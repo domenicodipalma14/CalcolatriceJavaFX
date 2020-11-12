@@ -99,7 +99,7 @@ public class SampleController {
 	private void inserisciNumero(String c){
 		if(operazione.length() == 0){
 			if(num1.length() == 0){
-				if(c == ",") label1.setText("Inserire numero!");
+				if(c.equals(",")) label1.setText("Inserire numero!");
 				else {
 					num1 = c;
 					str = num1;
@@ -114,7 +114,7 @@ public class SampleController {
 		}
 		else{
 			if(num2.length()==0){
-				if(c == ",") label1.setText(str + "Inserire numero!");
+				if(c.equals(",")) label1.setText(str + "Inserire numero!");
 				else{
 					num2 = c;
 					str +=num2;
