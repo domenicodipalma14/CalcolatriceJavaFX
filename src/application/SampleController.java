@@ -16,7 +16,7 @@ import javafx.event.*;
 public class SampleController {
 	private double op1 = 0;
 	
-	final String err = "ERRORE";
+	private final String err = "ERRORE";
 
 	@FXML
 	private Button btn0;
@@ -145,6 +145,7 @@ public class SampleController {
 	}
 	
 	private void calcolaRisultato(){
+		String []arrayToken;
 		StringTokenizer token;
 		double op2 = 0;
 		double ris = 0;
@@ -152,7 +153,6 @@ public class SampleController {
 		int num=0;
 		token =  new StringTokenizer(str, " ");
 		num = token.countTokens();
-		String arrayToken[];
 		arrayToken = new String[num];
 		while (token.hasMoreTokens())
 		{
