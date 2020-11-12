@@ -16,7 +16,7 @@ import javafx.event.*;
 public class SampleController {
 	private double op1 = 0;
 	
-	private static final String err = "ERRORE";
+	private static final String errore= "ERRORE";
 
 	@FXML
 	private Button btn0;
@@ -141,7 +141,7 @@ public class SampleController {
 			str += operazione;
 			label1.setText(str);
 		}
-		else label1.setText(err);
+		else label1.setText(errore);
 	}
 	
 	private void calcolaRisultato(){
@@ -181,7 +181,7 @@ public class SampleController {
 			break;
 		case "/":
 			if(op2 == 0){
-				label1.setText(err);
+				label1.setText(errore);
 			}
 			else {
 				ris = op1 / op2;
@@ -190,7 +190,7 @@ public class SampleController {
 			}
 			break;
 		default: 
-			label1.setText(err);
+			label1.setText(errore);
 			break;
 		}
 		
@@ -201,7 +201,7 @@ public class SampleController {
 	@FXML
 	void cancellaButton(ActionEvent event){
 		if(str.length() == 0) {
-			label1.setText(err);
+			label1.setText(errore);
 			str = "";
 			num1 = "";
 			num2 = "";
