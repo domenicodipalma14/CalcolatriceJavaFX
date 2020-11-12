@@ -16,7 +16,7 @@ import javafx.event.*;
 public class SampleController {
 	private double op1 = 0;
 	
-	private final String err = "ERRORE";
+	private static final String err = "ERRORE";
 
 	@FXML
 	private Button btn0;
