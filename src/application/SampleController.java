@@ -83,11 +83,11 @@ public class SampleController {
 	@FXML
 	void calButton(ActionEvent event){
 		if(num2.length()!=0 && tot.length()==0){
-			
 			calcolaRisultato();
 		}
 		else if(tot.length() != 0){
 			op1 = Double.parseDouble(tot);
+	
 			calcolaRisultato();
 		}
 		else label1.setText("INSERIRE PRIMA NUMERI");
@@ -162,7 +162,6 @@ public class SampleController {
 		
 		op1 = Double.parseDouble(arrayToken[0]);
 		op2 = Double.parseDouble(arrayToken[2]);
-		
 		switch(arrayToken[1]){
 		case "+": 
 			ris = op1 + op2;
@@ -194,6 +193,8 @@ public class SampleController {
 			break;
 		}
 		
+		num2="";
+		op2=0;
 		str = tot;
 		num1 = tot;
 	}
