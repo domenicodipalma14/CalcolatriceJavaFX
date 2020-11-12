@@ -14,11 +14,8 @@ import javafx.scene.control.Label;
 import javafx.event.*;
 
 public class SampleController {
-	private StringTokenizer token;
-	private String a_t[];
 	private double op1 = 0;
-	private double op2 = 0;
-	private double ris = 0;
+	
 
 	@FXML
 	private Button btn0;
@@ -58,11 +55,11 @@ public class SampleController {
 	@FXML
 	private Button btnCanc;
 	
-	private String num1 = new String();
-	private String num2 = new String();
-	private String operazione = new String();
-	private String tot = new String();
-	private String str = new String();
+	private String num1="";
+	private String num2="";
+	private String operazione="";
+	private String tot="";
+	private String str ="";
 	@FXML
 	 private void gestoreEvento(ActionEvent e){
 		if(e.getSource() == btn0) inserisciNumero("0");
@@ -139,20 +136,24 @@ public class SampleController {
 	}
 	
 	private void calcola_ris(){
+		String array_token[];
+		StringTokenizer token;
+		double op2 = 0;
+		double ris = 0;
 		int i=0, num;
 		token =  new StringTokenizer(str, " ");
 		num = token.countTokens();
-		a_t = new String[num];
+		array_token = new String[num];
 		while (token.hasMoreTokens())
 		{
-			a_t[i] = token.nextToken();
+			array_token[i] = token.nextToken();
 		    i++;
 		}
 		
-		op1 = Double.parseDouble(a_t[0]);
-		op2 = Double.parseDouble(a_t[2]);
+		op1 = Double.parseDouble(array_token[0]);
+		op2 = Double.parseDouble(array_token[2]);
 		
-		switch(a_t[1]){
+		switch(array_token[1]){
 		case "+": 
 			ris = op1 + op2;
 			tot = Double.toString(ris);
