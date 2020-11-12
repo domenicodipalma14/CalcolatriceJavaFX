@@ -16,6 +16,7 @@ import javafx.event.*;
 public class SampleController {
 	private double op1 = 0;
 	
+	final String err = "ERRORE";
 
 	@FXML
 	private Button btn0;
@@ -83,46 +84,54 @@ public class SampleController {
 	void calButton(ActionEvent event){
 		if(num2.length()!=0 && tot.length()==0){
 			
-			calcola_ris();
+			calcolaRisultato();
 		}
 		else if(tot.length() != 0){
 			op1 = Double.parseDouble(tot);
-			calcola_ris();
+			calcolaRisultato();
 		}
 		else label1.setText("INSERIRE PRIMA NUMERI");
 		num2 = "";
 		operazione = "";
 	}
-	private void inserisciNumero(String c){
-		if(operazione.length() == 0){
-			if(num1.length() == 0){
-				if(c.equals(",")) label1.setText("Inserire numero!");
-				else {
-					num1 = c;
-					str = num1;
-					label1.setText(str);
-					}
-			}
-			else{
-				num1 += c;
+	
+	private void checkNum1(String c){
+		if(num1.length() == 0){
+			if(c.equals(",")) label1.setText("Inserire numero!");
+			else {
+				num1 = c;
 				str = num1;
+				label1.setText(str);
+				}
+		}
+		else{
+			num1 += c;
+			str = num1;
+			label1.setText(str);
+		}
+	}
+	
+	private void checkNum2(String c){
+		if(num2.length()==0){
+			if(c.equals(",")) label1.setText(str + "Inserire numero!");
+			else{
+				num2 = c;
+				str +=num2;
 				label1.setText(str);
 			}
 		}
+		else {
+			num2 += c;
+			str = num1 + operazione + num2;
+			label1.setText(str);
+		}
+	}
+	private void inserisciNumero(String c){
+		if(operazione.length() == 0){
+			checkNum1(c);
+		}
 		else{
-			if(num2.length()==0){
-				if(c.equals(",")) label1.setText(str + "Inserire numero!");
-				else{
-					num2 = c;
-					str +=num2;
-					label1.setText(str);
-				}
-			}
-			else {
-				num2 += c;
-				str = num1 + operazione + num2;
-				label1.setText(str);
-			}
+			checkNum2(c);
 		}
 	}
 	
@@ -132,28 +141,29 @@ public class SampleController {
 			str += operazione;
 			label1.setText(str);
 		}
-		else label1.setText("ERRORE");
+		else label1.setText(err);
 	}
 	
-	private void calcola_ris(){
-		String array_token[];
+	private void calcolaRisultato(){
 		StringTokenizer token;
 		double op2 = 0;
 		double ris = 0;
-		int i=0, num;
+		int i=0;
+		int num=0;
 		token =  new StringTokenizer(str, " ");
 		num = token.countTokens();
-		array_token = new String[num];
+		String arrayToken[];
+		arrayToken = new String[num];
 		while (token.hasMoreTokens())
 		{
-			array_token[i] = token.nextToken();
+			arrayToken[i] = token.nextToken();
 		    i++;
 		}
 		
-		op1 = Double.parseDouble(array_token[0]);
-		op2 = Double.parseDouble(array_token[2]);
+		op1 = Double.parseDouble(arrayToken[0]);
+		op2 = Double.parseDouble(arrayToken[2]);
 		
-		switch(array_token[1]){
+		switch(arrayToken[1]){
 		case "+": 
 			ris = op1 + op2;
 			tot = Double.toString(ris);
@@ -171,7 +181,7 @@ public class SampleController {
 			break;
 		case "/":
 			if(op2 == 0){
-				label1.setText("ERRORE");
+				label1.setText(err);
 			}
 			else {
 				ris = op1 / op2;
@@ -180,7 +190,7 @@ public class SampleController {
 			}
 			break;
 		default: 
-			label1.setText("ERRORE");
+			label1.setText(err);
 			break;
 		}
 		
@@ -191,7 +201,7 @@ public class SampleController {
 	@FXML
 	void cancellaButton(ActionEvent event){
 		if(str.length() == 0) {
-			label1.setText("ERRORE");
+			label1.setText(err);
 			str = "";
 			num1 = "";
 			num2 = "";
